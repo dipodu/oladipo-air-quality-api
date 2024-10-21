@@ -1,10 +1,5 @@
-import {
-  Pm25Data,
-  AirQualityDB,
-  Pm25DataModel,
-  DataNotFoundError,
-} from "../models";
-import { calulatePMDataStats } from "../utils";
+import { Pm25Data, AirQualityDB, Pm25DataModel } from "../models";
+import { calulatePMDataStats, DataNotFoundError } from "../utils";
 
 export let airQualityDB: AirQualityDB = new Map([
   [

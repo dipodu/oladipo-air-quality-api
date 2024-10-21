@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { DataNotFoundError } from "../models";
+import { DataNotFoundError, NoFilterParametersError } from "../utils";
 
 export const errorHandler = (
   error: any,
@@ -7,8 +7,11 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  if (error instanceof DataNotFoundError) {
-    res.status(404).json({
+  if (
+    error instanceof DataNotFoundError ||
+    error instanceof NoFilterParametersError
+  ) {
+    res.status(error.statusCode).json({
       message: error.message,
     });
     return;

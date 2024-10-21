@@ -29,10 +29,3 @@ export type FilterQuery = {
   lat?: string;
   long?: string;
 };
-
-export class DataNotFoundError extends Error {
-  constructor(message = "Data with the provided ID was not found") {
-    super(message);
-    this.name = "DataNotFoundError";
-  }
-}

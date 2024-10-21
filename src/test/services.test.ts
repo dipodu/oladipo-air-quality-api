@@ -1,15 +1,11 @@
-import {
-  AirQualityDB,
-  DataNotFoundError,
-  Pm25Data,
-  Pm25DataModel,
-} from "../models";
+import { AirQualityDB, Pm25Data, Pm25DataModel } from "../models";
 import {
   addData,
   filterAirQualityData,
   getAllDataFromDB,
   updateData,
 } from "../services";
+import { DataNotFoundError } from "../utils";
 
 const initialMockDB: AirQualityDB = new Map<number, Pm25DataModel>([
   [

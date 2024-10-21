@@ -63,20 +63,25 @@ export const areAllValuesUndefined = (obj: Record<string, any>): boolean =>
   Object.values(obj).every((value) => value === undefined);
 
 class CustomError extends Error {
-  constructor(name: string, message: string) {
+  public statusCode: number;
+
+  constructor(name: string, message: string, statusCode: number) {
     super(message);
     this.name = name;
+    this.statusCode = statusCode;
   }
 }
 
 export class DataNotFoundError extends CustomError {
   constructor(message = "Data with the provided ID was not found") {
-    super("DataNotFoundError", message);
+    super("DataNotFoundError", message, 404);
   }
 }
 
 export class NoFilterParametersError extends CustomError {
-  constructor(message = "No valid filter parameters were provided") {
-    super("NoFilterParametersError", message);
+  constructor(
+    message = "No valid filter parameters provided. Please provide at least one of the following: 'year', 'lat', or 'long'."
+  ) {
+    super("NoFilterParametersError", message, 400);
   }
 }
