@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "docker:build": "docker build -t oladipo-air-quality-api .",
+    "docker:run": "docker run -p 3000:3000 oladipo-air-quality-api",
+    "docker:start": "docker build -t oladipo-air-quality-api . && docker run -p 3000:3000 oladipo-air-quality-api",
     "start": "tsc && node dist/index.js",
     "dev": "nodemon --watch './src/**/*.ts' --exec 'ts-node' ./src/index.ts",
     "test": "jest --coverage"
