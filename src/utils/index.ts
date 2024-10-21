@@ -58,3 +58,25 @@ export const serializeFilterParams = (
     long: serialize(query.long, parseFloat),
   };
 };
+
+export const areAllValuesUndefined = (obj: Record<string, any>): boolean =>
+  Object.values(obj).every((value) => value === undefined);
+
+class CustomError extends Error {
+  constructor(name: string, message: string) {
+    super(message);
+    this.name = name;
+  }
+}
+
+export class DataNotFoundError extends CustomError {
+  constructor(message = "Data with the provided ID was not found") {
+    super("DataNotFoundError", message);
+  }
+}
+
+export class NoFilterParametersError extends CustomError {
+  constructor(message = "No valid filter parameters were provided") {
+    super("NoFilterParametersError", message);
+  }
+}
