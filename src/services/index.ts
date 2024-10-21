@@ -93,3 +93,11 @@ export const filterAirQualityData = ({
     return true;
   });
 };
+
+export const getDataById = (id: number): Pm25Data | undefined => {
+  const retrievedData = retrieveDB().get(id);
+  if (!retrievedData) {
+    return undefined;
+  }
+  return { id, ...retrievedData };
+};
