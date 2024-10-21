@@ -10,3 +10,10 @@ export type Pm25Data = Pm25DataModel & {
 };
 
 export type AirQualityDB = Map<number, Pm25DataModel>;
+
+export type NewDataRequest = {
+  lat: string;
+  long: string;
+  year: string;
+  pm25Level: string;
+};

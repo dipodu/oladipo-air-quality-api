@@ -1,4 +1,18 @@
-import { Pm25Data } from "../models";
+import { NewDataRequest, Pm25DataModel, Pm25Data } from "../models";
+
+export const serilazeNewDataParams = ({
+  lat,
+  long,
+  year,
+  pm25Level,
+}: NewDataRequest): Pm25DataModel => {
+  return {
+    Latitude: Number(lat),
+    Longitude: Number(long),
+    Year: Number(year),
+    PM25Level: Number(pm25Level),
+  };
+};
 
 export const calulatePMDataStats = (pm25Data: Pm25Data[]) => {
   const pm25Levels = pm25Data.map((item) => item.PM25Level);
