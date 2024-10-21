@@ -23,7 +23,7 @@ const initialMockDB: AirQualityDB = new Map<number, Pm25DataModel>([
 ]);
 
 beforeEach(() => {
-  const mockDB = new Map(initialMockDB);
+  let mockDB = new Map(initialMockDB);
   jest.spyOn(require("../services"), "retrieveDB").mockReturnValue(mockDB);
 });
 
