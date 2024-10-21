@@ -68,3 +68,28 @@ export const addData = (pm25Data: Pm25DataModel): Pm25Data => {
 
   return { id: newId, ...pm25Data };
 };
+
+export const filterAirQualityData = ({
+  year,
+  lat,
+  long,
+}: {
+  year?: number;
+  lat?: number;
+  long?: number;
+}): Pm25Data[] => {
+  const db: Pm25Data[] = getAllDataFromDB();
+
+  return db.filter((pm25Data) => {
+    if (year !== undefined && pm25Data.Year !== year) {
+      return false;
+    }
+    if (lat !== undefined && pm25Data.Latitude !== lat) {
+      return false;
+    }
+    if (long !== undefined && pm25Data.Longitude !== long) {
+      return false;
+    }
+    return true;
+  });
+};
