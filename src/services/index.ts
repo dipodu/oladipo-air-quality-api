@@ -1,4 +1,5 @@
-import { Pm25Data, AirQualityDB } from "../models/index.js";
+import { Pm25Data, AirQualityDB } from "../models";
+import { calulatePMDataStats } from "../utils";
 
 export let airQualityDB: AirQualityDB = new Map([
   [
@@ -56,3 +57,5 @@ export const getAllDataFromDB = (): Pm25Data[] => {
     ...pm25Data,
   }));
 };
+
+export const getStats = () => calulatePMDataStats(getAllDataFromDB());
