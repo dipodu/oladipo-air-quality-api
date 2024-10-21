@@ -1,4 +1,9 @@
-import { Pm25Data, AirQualityDB, Pm25DataModel } from "../models";
+import {
+  Pm25Data,
+  AirQualityDB,
+  Pm25DataModel,
+  DataNotFoundError,
+} from "../models";
 import { calulatePMDataStats } from "../utils";
 
 export let airQualityDB: AirQualityDB = new Map([
@@ -104,4 +109,18 @@ export const getDataById = (id: number): Pm25Data | undefined => {
 
 export const deleteData = (id: number): boolean => {
   return retrieveDB().delete(id);
+};
+
+export const updateData = (newData: Pm25Data) => {
+  const existingData = getDataById(newData.id);
+
+  if (!existingData) {
+    throw new DataNotFoundError();
+  }
+
+  retrieveDB().set(newData.id, {
+    ...newData,
+  });
+
+  return getDataById(newData.id);
 };

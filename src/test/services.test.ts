@@ -1,5 +1,15 @@
-import { AirQualityDB, Pm25Data, Pm25DataModel } from "../models";
-import { addData, filterAirQualityData, getAllDataFromDB } from "../services";
+import {
+  AirQualityDB,
+  DataNotFoundError,
+  Pm25Data,
+  Pm25DataModel,
+} from "../models";
+import {
+  addData,
+  filterAirQualityData,
+  getAllDataFromDB,
+  updateData,
+} from "../services";
 
 const initialMockDB: AirQualityDB = new Map<number, Pm25DataModel>([
   [
@@ -192,6 +202,46 @@ describe("Air Quality DB Service", () => {
       });
 
       expect(filteredData.length).toBe(0);
+    });
+  });
+
+  describe("updateData()", () => {
+    it("should update existing data in the database and return the updated data", () => {
+      const updatedData: Pm25Data = {
+        id: 2,
+        Latitude: 34.052235,
+        Longitude: -118.243683,
+        Year: 9000,
+        PM25Level: 10.232233,
+      };
+
+      const result = updateData(updatedData);
+
+      expect(result).toEqual(updatedData);
+      expect(mockDB.get(2)).toEqual({
+        id: 2,
+        Latitude: 34.052235,
+        Longitude: -118.243683,
+        Year: 9000,
+        PM25Level: 10.232233,
+      });
+    });
+
+    it("should throw a DataNotFoundError if the data to be updated does not exist", () => {
+      const nonExistentData: Pm25Data = {
+        id: 999,
+        Latitude: 0,
+        Longitude: 0,
+        Year: 2023,
+        PM25Level: 7.5,
+      };
+
+      try {
+        updateData(nonExistentData);
+        fail("updateData should have thrown a DataNotFoundError");
+      } catch (error) {
+        expect(error).toBeInstanceOf(DataNotFoundError);
+      }
     });
   });
 });

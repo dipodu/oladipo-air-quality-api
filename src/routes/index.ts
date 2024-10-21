@@ -5,6 +5,7 @@ import {
   addDataController,
   getDataByIdController,
   deleteDataController,
+  updateDataController,
 } from "../controllers";
 import {
   validateNewData,
@@ -20,6 +21,7 @@ router.get("/data/stats", statsController);
 router.post("/data", validateNewData, addDataController);
 router.get("/data/filter", validatePMFilterData, filterDataController);
 router.get("/:id", validateId, getDataByIdController);
+router.put("/data/:id", validateId, validateNewData, updateDataController);
 router.delete("/data/:id", validateId, deleteDataController);
 
 export default router;
