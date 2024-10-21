@@ -3,11 +3,11 @@ import { getDataById } from "../services";
 import { DataNotFoundError } from "../models";
 
 export const getDataByIdController = (
-  req: Request,
+  { params }: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const data = getDataById(parseInt(req.params.id));
+  const data = getDataById(parseInt(params.id));
 
   if (!data) {
     next(new DataNotFoundError());

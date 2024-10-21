@@ -3,11 +3,11 @@ import { addData } from "../services";
 import { serilazeNewDataParams } from "../utils";
 
 export const addDataController = (
-  req: Request,
+  { body }: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const newData = serilazeNewDataParams(req.body);
+  const newData = serilazeNewDataParams(body);
 
   try {
     const addedData = addData(newData);
