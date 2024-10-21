@@ -101,3 +101,7 @@ export const getDataById = (id: number): Pm25Data | undefined => {
   }
   return { id, ...retrievedData };
 };
+
+export const deleteData = (id: number): boolean => {
+  return retrieveDB().delete(id);
+};
