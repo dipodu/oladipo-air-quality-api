@@ -1,4 +1,5 @@
 import { calulatePMDataStats } from "../../src/utils";
+import { serializeFilterParams } from "../../src/utils";
 import { Pm25Data } from "../../src/models";
 
 describe("calculatePMDataStats", () => {
@@ -54,5 +55,60 @@ describe("calculatePMDataStats", () => {
     expect(stats.average).toBeCloseTo(expectedStats.average, 2);
     expect(stats.min).toBe(expectedStats.min);
     expect(stats.max).toBe(expectedStats.max);
+  });
+});
+
+import { FilterQuery, SerializedFilterQuery } from "../models";
+
+describe("serializeFilterParams", () => {
+  it("should serialize filter parameters correctly", () => {
+    const filterQuery: FilterQuery = {
+      year: "2023",
+      lat: "40.730610",
+      long: "-73.935242",
+    };
+
+    const expectedSerializedQuery: SerializedFilterQuery = {
+      year: 2023,
+      lat: 40.73061,
+      long: -73.935242,
+    };
+
+    const result = serializeFilterParams(filterQuery);
+    expect(result).toEqual(expectedSerializedQuery);
+  });
+
+  it("should handle undefined filter parameters", () => {
+    const filterQuery: FilterQuery = {
+      year: undefined,
+      lat: undefined,
+      long: undefined,
+    };
+
+    const expectedSerializedQuery: SerializedFilterQuery = {
+      year: undefined,
+      lat: undefined,
+      long: undefined,
+    };
+
+    const result = serializeFilterParams(filterQuery);
+    expect(result).toEqual(expectedSerializedQuery);
+  });
+
+  it("should handle non-numeric filter parameters", () => {
+    const filterQuery: FilterQuery = {
+      year: "abc",
+      lat: "def",
+      long: "ghi",
+    };
+
+    const expectedSerializedQuery: SerializedFilterQuery = {
+      year: undefined,
+      lat: undefined,
+      long: undefined,
+    };
+
+    const result = serializeFilterParams(filterQuery);
+    expect(result).toEqual(expectedSerializedQuery);
   });
 });

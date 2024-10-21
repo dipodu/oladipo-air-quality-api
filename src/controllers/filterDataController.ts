@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { SerializedFilterQuery } from "../models";
 import { filterAirQualityData } from "../services";
-import { serilazeFilterParams } from "../utils";
+import { serializeFilterParams } from "../utils";
 
 export const filterDataController = (
   req: Request,
@@ -9,7 +9,7 @@ export const filterDataController = (
   next: NextFunction
 ) => {
   try {
-    const query: SerializedFilterQuery = serilazeFilterParams(req.query);
+    const query: SerializedFilterQuery = serializeFilterParams(req.query);
 
     res.json(filterAirQualityData(query));
     return;
