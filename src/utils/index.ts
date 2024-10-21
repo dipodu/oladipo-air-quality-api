@@ -1,4 +1,10 @@
-import { NewDataRequest, Pm25DataModel, Pm25Data } from "../models";
+import {
+  NewDataRequest,
+  Pm25DataModel,
+  Pm25Data,
+  FilterQuery,
+  SerializedFilterQuery,
+} from "../models";
 
 export const serilazeNewDataParams = ({
   lat,
@@ -27,5 +33,15 @@ export const calulatePMDataStats = (pm25Data: Pm25Data[]) => {
     average: mean,
     min,
     max,
+  };
+};
+
+export const serilazeFilterParams = (
+  query: FilterQuery
+): SerializedFilterQuery => {
+  return {
+    year: query.year !== undefined ? Number(query.year) : undefined,
+    lat: query.lat !== undefined ? parseFloat(query.lat) : undefined,
+    long: query.long !== undefined ? parseFloat(query.long) : undefined,
   };
 };

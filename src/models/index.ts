@@ -17,3 +17,15 @@ export type NewDataRequest = {
   year: string;
   pm25Level: string;
 };
+
+export type SerializedFilterQuery = {
+  year?: number;
+  lat?: number;
+  long?: number;
+};
+
+export type FilterQuery = {
+  year?: string;
+  lat?: string;
+  long?: string;
+};
