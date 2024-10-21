@@ -1,4 +1,4 @@
-import { Pm25Data, AirQualityDB } from "../models";
+import { Pm25Data, AirQualityDB } from "../models/index.js";
 
 export let airQualityDB: AirQualityDB = new Map([
   [
@@ -49,3 +49,10 @@ export let airQualityDB: AirQualityDB = new Map([
 ]);
 
 export const retrieveDB = (): AirQualityDB => airQualityDB;
+
+export const getAllDataFromDB = (): Pm25Data[] => {
+  return Array.from(retrieveDB().entries()).map(([id, pm25Data]) => ({
+    id,
+    ...pm25Data,
+  }));
+};
