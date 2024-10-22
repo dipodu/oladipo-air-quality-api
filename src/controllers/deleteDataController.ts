@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { deleteData } from "../services";
-import { DataNotFoundError } from "../utils";
+import { DataNotFoundError } from "../errors";
 
 export const deleteDataController = (
   { params }: Request,

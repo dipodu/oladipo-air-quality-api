@@ -16,12 +16,12 @@ import { filterDataController } from "../controllers";
 
 const router = Router();
 
-router.get("/", getAllDataController);
 router.get("/data/stats", statsController);
-router.post("/data", validateNewData, addDataController);
 router.get("/data/filter", validatePMFilterData, filterDataController);
-router.get("/:id", validateId, getDataByIdController);
+router.post("/data", validateNewData, addDataController);
 router.put("/data/:id", validateId, validateNewData, updateDataController);
 router.delete("/data/:id", validateId, deleteDataController);
+router.get("/data/:id", validateId, getDataByIdController);
+router.get("/data", getAllDataController);
 
 export default router;

@@ -1,11 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { SerializedFilterQuery } from "../models";
 import { filterAirQualityData } from "../services";
-import {
-  areAllValuesUndefined,
-  NoFilterParametersError,
-  serializeFilterParams,
-} from "../utils";
+import { areAllValuesUndefined, serializeFilterParams } from "../utils";
+import { NoFilterParametersError } from "../errors";
 
 export const filterDataController = (
   req: Request,

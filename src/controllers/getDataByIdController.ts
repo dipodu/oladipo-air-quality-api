@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { getDataById } from "../services";
-import { DataNotFoundError } from "../utils";
+import { DataNotFoundError } from "../errors";
 
 export const getDataByIdController = (
   { params }: Request,

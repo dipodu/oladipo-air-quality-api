@@ -28,8 +28,9 @@ Ensure the Docker daemon is running on your machine before proceeding.
 2. Build and run the Docker container by running the following command:
 
    ```bash
-   npm run docker:build-run
-Once the container is running, you can start making API requests.
+   npm run docker:start
+   Once the container is running, you can start making API requests.
+   ```
 
 ## Steps to Run Locally
 
@@ -49,9 +50,10 @@ Ensure that you have the necessary version of npm (version 9.1.2) installed.
 
 3.  Start the server by running:
 
-    ```bash
-    npm run start
-Once the server is running, you can make requests to the same endpoints mentioned above.
+        ```bash
+        npm run start
+
+    Once the server is running, you can make requests to the same endpoints mentioned above.
 
 # API Endpoints
 
@@ -121,3 +123,20 @@ Retrieve basic statistics such as:
 - **Total count of entries**
 - **Average PM2.5 levels**
 - **Minimum and maximum PM2.5 levels**
+
+## Tests
+
+To run the tests run from the project root folder:
+
+```bash
+npm run test
+```
+
+## Asumptions Made
+
+1. Any data submitted to the API must include a valid PM25Level; records without this value will be rejected.
+
+## Improvements
+
+- Add rate limiting to the API to prevent abuse and ensure fair use of resources
+- Introduce pagination for GET requests, especially for large datasets. This will enhance performance and provide more efficient data retrieval

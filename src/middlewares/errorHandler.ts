@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { DataNotFoundError, NoFilterParametersError } from "../utils";
+import { DataNotFoundError, NoFilterParametersError } from "../errors";
 
 export const errorHandler = (
   error: any,
