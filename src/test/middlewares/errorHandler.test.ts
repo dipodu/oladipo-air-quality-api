@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { DataNotFoundError, NoFilterParametersError } from "../../utils";
 import { errorHandler } from "../../middlewares";
+import { DataNotFoundError, NoFilterParametersError } from "../../errors";
 
 const mockRequest = (): Partial<Request> => ({});
 const mockResponse = (): Partial<Response> => {

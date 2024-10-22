@@ -1,11 +1,11 @@
-import { AirQualityDB, Pm25Data, Pm25DataModel } from "../models";
+import { DataNotFoundError } from "../../errors";
+import { AirQualityDB, Pm25Data, Pm25DataModel } from "../../models";
 import {
   addData,
   filterAirQualityData,
   getAllDataFromDB,
   updateData,
-} from "../services";
-import { DataNotFoundError } from "../utils";
+} from "../../services";
 
 const initialMockDB: AirQualityDB = new Map<number, Pm25DataModel>([
   [
@@ -49,7 +49,7 @@ const initialMockDB: AirQualityDB = new Map<number, Pm25DataModel>([
 let mockDB: AirQualityDB;
 beforeEach(() => {
   mockDB = new Map(initialMockDB);
-  jest.spyOn(require("../services"), "retrieveDB").mockReturnValue(mockDB);
+  jest.spyOn(require("../../services"), "retrieveDB").mockReturnValue(mockDB);
 });
 
 describe("Air Quality DB Service", () => {
